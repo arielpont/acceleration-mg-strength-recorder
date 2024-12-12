@@ -56,6 +56,6 @@ basic.forever(function () {
         basic.clearScreen()
     } else {
         datalogger.log(datalogger.createCV("strength", input.acceleration(Dimension.Strength)))
-        basic.pause(0.005)
+        basic.pause(0.001)
     }
 })
