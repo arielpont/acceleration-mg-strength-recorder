@@ -12,29 +12,16 @@ datalogger.onLogFull(function () {
 })
 let log_full = false
 log_full = false
+let loggin = false
 basic.forever(function () {
-    if (input.buttonIsPressed(Button.A)) {
-        sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Blue))
-        sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Blue))
-        basic.showLeds(`
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            `)
-        basic.pause(250)
-        sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Black))
-        sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Black))
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        basic.pause(250)
-        basic.clearScreen()
+    if (input.buttonIsPressed(Button.A) && loggin == false) {
+        loggin = true
+        sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Green))
+        basic.showIcon(IconNames.Yes)
+    } else if (input.buttonIsPressed(Button.A) && loggin == true) {
+        loggin = false
+        sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Red))
+        basic.showIcon(IconNames.Square)
     } else if (input.buttonIsPressed(Button.B)) {
         for (let index = 0; index < 4; index++) {
             basic.showLeds(`
@@ -55,10 +42,11 @@ basic.forever(function () {
         datalogger.deleteLog(datalogger.DeleteType.Full)
         basic.clearScreen()
     } else {
-        datalogger.log(
-        datalogger.createCV("strength", input.acceleration(Dimension.Strength)),
-        datalogger.createCV("acc y", input.acceleration(Dimension.Y))
-        )
-        basic.pause(0.005)
+    	
+    }
+})
+loops.everyInterval(0.005, function () {
+    if (loggin == true) {
+        datalogger.log(datalogger.createCV("strength", input.acceleration(Dimension.Strength)))
     }
 })
