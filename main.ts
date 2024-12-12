@@ -55,7 +55,10 @@ basic.forever(function () {
         datalogger.deleteLog(datalogger.DeleteType.Full)
         basic.clearScreen()
     } else {
-        datalogger.log(datalogger.createCV("strength", input.acceleration(Dimension.Strength)))
-        basic.pause(0.001)
+        datalogger.log(
+        datalogger.createCV("strength", input.acceleration(Dimension.Strength)),
+        datalogger.createCV("acc y", input.acceleration(Dimension.Y))
+        )
+        basic.pause(0.005)
     }
 })
