@@ -23,7 +23,7 @@ basic.forever(function () {
             # # # # #
             # # # # #
             `)
-        basic.pause(500)
+        basic.pause(250)
         sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Black))
         sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Black))
         basic.showLeds(`
@@ -33,11 +33,13 @@ basic.forever(function () {
             . # # # .
             . . . . .
             `)
+        basic.pause(250)
+        basic.clearScreen()
     } else if (input.buttonIsPressed(Button.B)) {
         for (let index = 0; index < 4; index++) {
             basic.showIcon(IconNames.No)
-            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Yellow))
-            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Yellow))
+            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Black))
+            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Black))
             basic.pause(500)
             basic.showLeds(`
                 . . . . .
@@ -46,10 +48,12 @@ basic.forever(function () {
                 . # . # .
                 . . . . .
                 `)
-            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Black))
-            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Black))
+            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Yellow))
+            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Yellow))
+            basic.clearScreen()
         }
         datalogger.deleteLog(datalogger.DeleteType.Full)
+        basic.clearScreen()
     } else {
         datalogger.log(datalogger.createCV("strength", input.acceleration(Dimension.Strength)))
         basic.pause(0.005)
