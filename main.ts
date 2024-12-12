@@ -37,10 +37,6 @@ basic.forever(function () {
         basic.clearScreen()
     } else if (input.buttonIsPressed(Button.B)) {
         for (let index = 0; index < 4; index++) {
-            basic.showIcon(IconNames.No)
-            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Black))
-            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Black))
-            basic.pause(500)
             basic.showLeds(`
                 . . . . .
                 . # . # .
@@ -50,6 +46,10 @@ basic.forever(function () {
                 `)
             sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Yellow))
             sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Yellow))
+            basic.pause(500)
+            basic.showIcon(IconNames.No)
+            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedA), sb.color(SBColor.Black))
+            sb.setRgbLedColor(sb.rgbLed(SBRgbLed.RgbLedB), sb.color(SBColor.Black))
             basic.clearScreen()
         }
         datalogger.deleteLog(datalogger.DeleteType.Full)
